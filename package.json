@@ -1,0 +1,10 @@
+{
+  "type": "module",
+  "scripts": {
+    "crop": "node scripts/crop-assets.mjs",
+    "preview": "node scripts/preview-grid.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
+}

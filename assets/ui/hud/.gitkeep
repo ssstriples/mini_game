@@ -1,0 +1,4 @@
+# hud-timer-bg.png         → 타이머 배경 (시계 아이콘, 숫자는 동적 렌더링)
+# hud-acorn-empty.png      → 도토리 카운터 빈 상태 (반투명)
+# hud-acorn-filled.png     → 도토리 카운터 채워진 상태 (불투명)
+# hud-instruction-bg.png   → "도토리 5개를 숨겨보아요!" 안내 패널 배경

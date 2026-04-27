@@ -1,0 +1,4 @@
+# effect-found.png               → 발견 효과 단일 이미지 (별 + 빛줄기)
+# effect-found-spritesheet.png   → 발견 효과 스프라이트시트 (6프레임)
+# effect-wrong.png               → 오답 효과 (낙엽 휙~)
+# effect-sparkle.png             → 반짝임 파티클 (작은 별, 20×20px)

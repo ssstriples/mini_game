@@ -1,0 +1,14 @@
+# sfx-click.mp3           → 버튼 클릭음
+# sfx-click.webm          → WEBM 폴백
+# sfx-acorn-hide.mp3      → 도토리 숨기기 ("뚝" 소리)
+# sfx-acorn-hide.webm
+# sfx-leaf-rustle.mp3     → 낙엽 바스락 (WaitPhase 중 루프)
+# sfx-leaf-rustle.webm
+# sfx-correct.mp3         → 정답 효과음 (밝은 팡파레)
+# sfx-correct.webm
+# sfx-wrong.mp3           → 오답 효과음 (낮은 "웅~")
+# sfx-wrong.webm
+# sfx-success.mp3         → 성공 결과 효과음
+# sfx-success.webm
+# sfx-card-flip.mp3       → 장소 뒤집기 소리 (FindPhase 클릭)
+# sfx-card-flip.webm

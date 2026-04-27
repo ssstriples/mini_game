@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  overflow: hidden;
+  background-color: #1a1a2e;
+  font-family: 'Noto Sans KR', sans-serif;
+}
