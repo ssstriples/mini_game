@@ -27,18 +27,48 @@ export default function App() {
     const game = gameRef.current
     if (game) {
       const sceneManager = game.scene
-      // PreloaderScene 완료 후 MainMenuScene이 활성화된 상태에서 GameScene으로 이동
       if (sceneManager.isActive('MainMenuScene')) {
         sceneManager.getScene('MainMenuScene').cameras.main.fadeOut(300, 0, 0, 0)
         sceneManager.getScene('MainMenuScene').cameras.main.once('camerafadeoutcomplete', () => {
           sceneManager.start('GameScene')
         })
       } else {
-        // 아직 MainMenuScene이 준비 안 된 경우 이벤트 대기
         sceneManager.getScene('MainMenuScene')?.events.once('create', () => {
           sceneManager.start('GameScene')
         })
       }
+    }
+  }
+
+  /** 다시하기 — StartScreen 없이 같은 난이도로 즉시 재시작 */
+  const handleReplay = () => {
+    setShowResult(false)
+    const game = gameRef.current
+    if (game) {
+      const sm = game.scene
+      // ResultScene 혹은 GameScene 어디서든 GameScene으로 직행
+      const fadeAndRestart = (sceneKey: string) => {
+        const scene = sm.getScene(sceneKey)
+        if (!scene) return sm.start('GameScene')
+        scene.cameras.main.fadeOut(300, 0, 0, 0)
+        scene.cameras.main.once('camerafadeoutcomplete', () => {
+          sm.start('GameScene')
+        })
+      }
+      if (sm.isActive('ResultScene')) fadeAndRestart('ResultScene')
+      else if (sm.isActive('GameScene')) fadeAndRestart('GameScene')
+      else sm.start('GameScene')
+    }
+  }
+
+  /** 처음으로 — StartScreen으로 돌아가 난이도 재선택 */
+  const handleHome = () => {
+    setShowStart(true)
+    setShowResult(false)
+    const game = gameRef.current
+    if (game) {
+      const sm = game.scene
+      if (sm.isActive('ResultScene')) sm.start('MainMenuScene')
     }
   }
 
@@ -51,14 +81,8 @@ export default function App() {
       )}
       {shouldShowResult && (
         <ResultPopup
-          onReplay={() => {
-            setShowStart(true)
-            setShowResult(false)
-          }}
-          onHome={() => {
-            setShowStart(true)
-            setShowResult(false)
-          }}
+          onReplay={handleReplay}
+          onHome={handleHome}
         />
       )}
     </main>

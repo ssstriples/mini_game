@@ -33,6 +33,8 @@ export default function ResultPopup({ onReplay, onHome }: ResultPopupProps) {
 
   const handleReplay = () => {
     resetGame()
+    // 같은 난이도로 store 재초기화 후 App의 onReplay가 GameScene 재시작 처리
+    useGameStore.getState().startGame()
     onReplay()
   }
 
