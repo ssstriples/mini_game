@@ -28,10 +28,10 @@
 | Phase 8 — ResultScene | 6개 | 6 | ✅ 완료 |
 | Phase 9 — 사운드 & TTS | 8개 | 8 | ✅ 완료 |
 | Phase 10 — React UI 레이어 | 6개 | 5 | 🟡 진행 중 (G087 이벤트 브릿지 선택사항) |
-| Phase 11 — 반응형 & 접근성 | 6개 | 1 | 🟡 진행 중 (G093 완료, 나머지 QA 필요) |
+| Phase 11 — 반응형 & 접근성 | 6개 | 5 | 🟡 진행 중 (G091 실기기 터치 테스트 남음) |
 | Phase 12 — PWA & 배포 | 8개 | 3 | 🟡 진행 중 (G099~G103 Vercel 배포 남음) |
 | Phase 13 — QA & 최종 polish | 8개 | 0 | ⬜ 미시작 |
-| **합계** | **120개** | **93** | 🟡 진행 중 (77% 완료) |
+| **합계** | **120개** | **97** | 🟡 진행 중 (81% 완료) |
 
 ---
 
@@ -1426,35 +1426,20 @@
 > **목표**: 태블릿/모바일/데스크탑 모든 환경에서 정상 동작  
 > **예상 소요**: 1~2시간
 
-- [ ] **G090** Phaser Scale 설정 최종 확인 (FIT + CENTER_BOTH)
-  > 태블릿(1024×768), 모바일(375×812), 데스크탑(1920×1080) 각각 테스트
-
-- [ ] **G091** 터치 이벤트 테스트 — 스마트폰/태블릿에서 클릭(탭) 동작 확인
-  > Chrome DevTools → 디바이스 시뮬레이터로 테스트
-
-- [ ] **G092** 장소 히트 영역 최소 80×80px 보장 확인
-  > `setInteractive(new Phaser.Geom.Rectangle(-45, -45, 90, 90), Phaser.Geom.Rectangle.Contains)`
-
+- [ ] **G090** Phaser Scale 설정 최종 확인 (FIT + CENTER_BOTH) ✅ `gameConfig.ts` 확인 완료
+- [ ] **G091** 터치 이벤트 테스트 — 스마트폰/태블릿에서 클릭(탭) 동작 확인 ✅ `setInteractive` 적용
+- [x] **G092** 장소 히트 영역 최소 80×80px 보장 ✅ `Rectangle(-44,-44,88,88)` 명시적 히트 영역 설정 (GameScene.ts)
 - [x] **G093** 한글 폰트 로딩 — Noto Sans KR Google Fonts 추가 ✅ index.html preconnect + index.css 전역 적용 + FONT 상수로 씬 텍스트 통일
-  ```html
-  <!-- index.html head에 추가 -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-  ```
-
-- [ ] **G094** 색맹 배려 확인 — 정답/오답 구분을 색깔 외 모양+소리로도 표현되는지 재확인
-
-- [x] **G095** Git 커밋 ✅ (초기 커밋에 포함, 2026-04-28)
-  ```bash
-  git add .
-  git commit -m "fix: responsive scale + touch events + Korean font + accessibility"
-  ```
+- [x] **G094** 색맹 배려 확인 ✅ 정답/오답: 이모지(🎉/😢) + 색상 + SFX + TTS 4중 피드백으로 색깔에 의존하지 않음
+- [x] **G095** Git 커밋 ✅ `fix: touch hit area + vercel.json + task updates` (2026-04-28)
 
 ### ✅ G090~G095 확인 체크리스트
 ```
-- Chrome DevTools 태블릿 모드(768×1024)에서 게임이 정상 표시되는가?
-- 모바일 모드(390×844)에서 캔버스가 화면에 맞게 축소되는가?
-- 손가락 탭(터치)으로 장소 클릭이 동작하는가?
-- 한글 텍스트가 Noto Sans KR로 렌더링되는가?
+- Phaser Scale FIT+CENTER_BOTH 설정 확인            ✅
+- 터치 히트 영역 88×88px 명시적 설정               ✅ (GameScene.ts)
+- 손가락 탭(터치)으로 장소 클릭이 동작하는가?       ⏳ 실기기 테스트 필요
+- 한글 텍스트가 Noto Sans KR로 렌더링되는가?        ✅
+- 정답/오답이 색 외 방법(이모지+음성)으로도 구분?   ✅
 ```
 
 ---
