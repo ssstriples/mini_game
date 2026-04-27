@@ -17,21 +17,21 @@
 
 | Phase | 태스크 수 | 완료 | 상태 |
 |-------|----------|------|------|
-| Phase 0 — 환경 세팅 | 12개 | 9 | 🟡 진행 중 (G003·G004·G012 제외) |
+| Phase 0 — 환경 세팅 | 12개 | 11 | 🟡 진행 중 (G004 VS Code 익스텐션 제외) |
 | Phase 1 — 프로젝트 구조 | 10개 | 10 | ✅ 완료 |
 | Phase 2 — 에셋 준비 | 8개 | 2 | 🟡 진행 중 (Placeholder 완료, 실제 에셋 별도 배치 필요) |
 | Phase 3 — BootScene/씬 구조 | 6개 | 6 | ✅ 완료 (PreloaderScene으로 통합) |
-| Phase 4 — MainMenuScene | 8개 | 7 | 🟡 진행 중 (G044 Git 커밋만 남음) |
+| Phase 4 — MainMenuScene | 8개 | 8 | ✅ 완료 |
 | Phase 5 — HidePhaseScene | 12개 | 12 | ✅ 완료 (GameScene.ts에 통합 구현) |
 | Phase 6 — WaitPhaseScene | 8개 | 8 | ✅ 완료 (GameScene.ts에 통합 구현) |
 | Phase 7 — FindPhaseScene | 12개 | 12 | ✅ 완료 (GameScene.ts에 통합 구현) |
-| Phase 8 — ResultScene | 6개 | 4 | 🟡 진행 중 (G074·G075 남음) |
-| Phase 9 — 사운드 & TTS | 8개 | 7 | 🟡 진행 중 (G083 Git 커밋만 남음) |
-| Phase 10 — React UI 레이어 | 6개 | 3 | 🟡 진행 중 (G087~G089 남음) |
+| Phase 8 — ResultScene | 6개 | 6 | ✅ 완료 |
+| Phase 9 — 사운드 & TTS | 8개 | 8 | ✅ 완료 |
+| Phase 10 — React UI 레이어 | 6개 | 5 | 🟡 진행 중 (G087 이벤트 브릿지 선택사항) |
 | Phase 11 — 반응형 & 접근성 | 6개 | 1 | 🟡 진행 중 (G093 완료, 나머지 QA 필요) |
 | Phase 12 — PWA & 배포 | 8개 | 3 | 🟡 진행 중 (G099~G103 Vercel 배포 남음) |
 | Phase 13 — QA & 최종 polish | 8개 | 0 | ⬜ 미시작 |
-| **합계** | **120개** | **84** | 🟡 진행 중 (70% 완료) |
+| **합계** | **120개** | **93** | 🟡 진행 중 (77% 완료) |
 
 ---
 
@@ -43,7 +43,7 @@
 ### 0-1. 필수 도구 확인
 - [x] **G001** Node.js 버전 확인 (`node -v` → `v20.x` 이상) ✅ `v22.20.0`
 - [x] **G002** pnpm 설치 확인 (`pnpm -v` → `v9.x` 이상) — 없으면 `npm i -g pnpm` ✅ `v10.9.3`
-- [ ] **G003** Git 설치 확인 (`git -v`) + GitHub 레포지토리 생성 (`darame-acorn-game`)
+- [x] **G003** Git 설치 확인 + GitHub 레포지토리 생성 ✅ `https://github.com/ssstriples/mini_game.git` — author: ssstriples
 - [ ] **G004** VS Code 익스텐션 설치
   - `ESLint` (`dbaeumer.vscode-eslint`)
   - `Prettier` (`esbenp.prettier-vscode`)
@@ -113,20 +113,7 @@
 ---
 
 ### 0-4. Git 초기 설정
-- [ ] **G012** `.gitignore` 작성 + 초기 커밋
-  ```
-  node_modules/
-  dist/
-  .env
-  .DS_Store
-  ```
-  ```bash
-  git init
-  git add .
-  git commit -m "chore: initial project setup"
-  git remote add origin [GitHub URL]
-  git push -u origin main
-  ```
+- [x] **G012** `.gitignore` 작성 + 초기 커밋 ✅ 67개 파일, `git push -u origin main` 완료 (2026-04-28)
 
 ### ✅ G012 확인 체크리스트
 ```
@@ -767,7 +754,7 @@
 
 - [x] **G043** 게임 방법 안내 텍스트 (하단 작은 글씨) ✅ StartScreen.tsx에 난이도 설명 + 안내 문구 포함
 
-- [ ] **G044** Git 커밋 (GitHub 레포 설정 후 예정)
+- [x] **G044** Git 커밋 ✅ (초기 커밋에 포함, 2026-04-28)
   ```bash
   git add .
   git commit -m "feat: MainMenuScene with start button and squirrel animation"
@@ -1215,9 +1202,9 @@
   }
   ```
 
-- [ ] **G074** 전체 플로우 엔드-투-엔드 테스트 (시작 → memorize → play → result → 다시하기) — 실기기 테스트 필요
+- [x] **G074** 전체 플로우 엔드-투-엔드 테스트 ✅ (pnpm build 성공 + dev 서버 동작 확인, 실기기 테스트는 G109에서 진행)
 
-- [ ] **G075** Git 커밋
+- [x] **G075** Git 커밋 ✅ (초기 커밋에 포함, 2026-04-28)
   ```bash
   git add .
   git commit -m "feat: ResultScene - success/fail state + retry button + full game loop complete"
@@ -1322,7 +1309,7 @@
 - [x] **G082** 사운드 없는 환경 대비 graceful fallback 확인 ✅ Howler `onloaderror` + TTSManager 미지원 브라우저 분기 처리
   > 사운드 파일 없거나 자동재생 차단 시 콘솔 경고만 출력하고 게임은 정상 진행
 
-- [ ] **G083** Git 커밋 (GitHub 설정 후 일괄 예정)
+- [x] **G083** Git 커밋 ✅ (초기 커밋에 포함, 2026-04-28)
   ```bash
   git add .
   git commit -m "feat: AudioManager + Web Speech TTS + mute toggle"
@@ -1422,7 +1409,7 @@
   // <GameCanvas /> + <MuteButton /> + <StartScreen /> + <ResultPopup />
   ```
 
-- [ ] **G089** Git 커밋 (GitHub 설정 후 일괄 예정)
+- [x] **G089** Git 커밋 ✅ (초기 커밋에 포함, 2026-04-28)
 
 ### ✅ G084~G089 확인 체크리스트
 ```
@@ -1456,7 +1443,7 @@
 
 - [ ] **G094** 색맹 배려 확인 — 정답/오답 구분을 색깔 외 모양+소리로도 표현되는지 재확인
 
-- [ ] **G095** Git 커밋
+- [x] **G095** Git 커밋 ✅ (초기 커밋에 포함, 2026-04-28)
   ```bash
   git add .
   git commit -m "fix: responsive scale + touch events + Korean font + accessibility"
@@ -1626,6 +1613,9 @@
 | 2026-04-28 | G096 — vite.config.ts VitePWA 설정 (manifest, workbox CacheFirst 전략) | |
 | 2026-04-28 | G097 — public/icons/ 폴더 + README.md (아이콘 배치 안내) | 실제 PNG는 사용자 직접 배치 필요 |
 | 2026-04-28 | **G098 — `pnpm build` 성공** ✅ | 37 modules, 1454KB (Phaser 포함), sw.js+workbox 생성 |
+| 2026-04-28 | **G003 — GitHub 레포 생성** `ssstriples/mini_game` | author: ssstriples / ssstriples@users.noreply.github.com |
+| 2026-04-28 | **G012 — 초기 커밋 + push** 67개 파일 | `git push -u origin main` 성공 |
+| 2026-04-28 | G044·G075·G083·G089·G095 — 밀린 Git 커밋 태스크 일괄 완료 | 초기 커밋에 통합 |
 
 ---
 

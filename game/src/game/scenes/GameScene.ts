@@ -87,7 +87,10 @@ export class GameScene extends Phaser.Scene {
       const img = this.add
         .image(x, y, spot.spriteFrame)
         .setScale(0.85)
-        .setInteractive()
+        .setInteractive(
+          new Phaser.Geom.Rectangle(-44, -44, 88, 88),
+          Phaser.Geom.Rectangle.Contains,
+        )
         .setAlpha(0.85)
 
       // 호버 효과
