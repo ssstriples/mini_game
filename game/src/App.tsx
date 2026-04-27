@@ -13,16 +13,15 @@ const SCENES = [PreloaderScene, MainMenuScene, GameScene, ResultScene]
 
 export default function App() {
   const [showStart, setShowStart] = useState(true)
-  const [showResult, setShowResult] = useState(false)
   const phase = useGameStore((s) => s.phase)
   const gameRef = useRef<Phaser.Game | null>(null)
 
-  // Phaser GameScene이 complete 단계가 되면 ResultPopup 표시
-  const shouldShowResult = phase === 'complete' && !showStart && showResult
+  // phase가 complete이고 StartScreen이 없을 때만 ResultPopup 표시
+  // showResult 별도 상태 불필요 — resetGame()/startGame() 호출 시 phase가 바뀌어 팝업 자동 소멸
+  const shouldShowResult = phase === 'complete' && !showStart
 
   const handleStart = () => {
     setShowStart(false)
-    setShowResult(true)
     // Phaser 씬을 MainMenuScene에서 바로 GameScene으로 전환
     const game = gameRef.current
     if (game) {
@@ -42,7 +41,8 @@ export default function App() {
 
   /** 다시하기 — StartScreen 없이 같은 난이도로 즉시 재시작 */
   const handleReplay = () => {
-    setShowResult(false)
+    // ResultPopup 내부에서 resetGame()+startGame()으로 phase='memorize'가 되므로
+    // shouldShowResult가 자동으로 false → 팝업 사라짐. 별도 상태 불필요.
     const game = gameRef.current
     if (game) {
       const sm = game.scene
@@ -64,7 +64,6 @@ export default function App() {
   /** 처음으로 — StartScreen으로 돌아가 난이도 재선택 */
   const handleHome = () => {
     setShowStart(true)
-    setShowResult(false)
     const game = gameRef.current
     if (game) {
       const sm = game.scene
