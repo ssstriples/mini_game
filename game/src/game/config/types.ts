@@ -51,4 +51,5 @@ export interface DifficultyConfig {
   rounds: number // 총 라운드 수
   memorizeTimeMs: number // 기억 시간 (ms)
   spotCount: number // 활성화할 장소 수
+  playTimeLimitMs: number // 정답 선택 제한 시간 (ms)
 }

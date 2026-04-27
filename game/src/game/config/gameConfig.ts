@@ -29,16 +29,19 @@ export const DIFFICULTY_CONFIG: Record<string, DifficultyConfig> = {
     rounds: 3,
     memorizeTimeMs: 4000,
     spotCount: 4,
+    playTimeLimitMs: 10000, // 10초
   },
   normal: {
     rounds: 5,
     memorizeTimeMs: 3000,
     spotCount: 6,
+    playTimeLimitMs: 7000,  // 7초
   },
   hard: {
     rounds: 7,
     memorizeTimeMs: 2000,
     spotCount: 8,
+    playTimeLimitMs: 5000,  // 5초
   },
 }
 
